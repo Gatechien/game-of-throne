@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<ul class="characters-list">
+    {% for heroe in heroes %}
+    <li class="character-card">
+        <a href="{{ path('character', {'id': heroe.id}) }}">
+            <div class="avatar" style="background: #e3e3e3;">
+                <img src="/assets/img/{{ heroe.image }}" alt="{{ heroe.firstname }}">
+            </div>
+            <div class="name">
+                {{ heroe.firstname }} {{ heroe.lastname }}
+            </div>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

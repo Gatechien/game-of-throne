@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<ul class="houses-list">
+    {% for house in houses %}
+    <li class="house-logo">
+        <a href="{{ path('house', {'id': house.id}) }}">
+            <div class="avatar" style="background: #{{ house.colour }};">
+                <img src="/assets/img/houses/{{ house.image }}" alt="{{ house.name }}">
+            </div>
+            <div class="name-house">
+                {{ house.name }}
+            </div>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

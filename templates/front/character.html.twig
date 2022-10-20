@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<section class="character-page">
+    <div class="col-8">
+        <h2>{{ heroe.firstname }} {{ heroe.lastname }}</h2>
+        <div class="bio">
+            <h3>Biographie</h3>
+            <p>{{ heroe.biography }}</p>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="avatar" style="background: #e3e3e3;">
+            <img src="/assets/img/{{ heroe.image }}" alt="{{ heroe.firstname }}">
+        </div>
+        <div class="infos">
+            <h3>Maisons</h3>
+            <div class="houses">
+                <ul>
+                    {% for house in heroe.house %}
+                    <li class="house-logo" style="background: #{{ house.colour }};">
+                        <a href="{{ path('house', {'id': house.id}) }}">
+                            <img src="/assets/img/houses/{{ house.image }}" alt="{{ house.name }}">
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="houses">
+                <ul class="meta">
+                    <li><span>Rang : </span>{{ heroe.title.name }}</li>
+                    {% if mother == 'mother' %}
+                    <li><span>Mère : </span>Non renseigné</li>
+                    {% else %}
+                    <li>
+                        <a href="{{ path('character', {'id': mother.id}) }}">
+                        <span>Mère : </span>{{ mother.firstname }} {{ mother.lastname }}</a>
+                    </li>
+                    {% endif %}
+                    {% if father == 'father' %}
+                    <li><span>Père : </span>Non renseigné</li>
+                    {% else %}
+                     <li>
+                        <a href="{{ path('character', {'id': father.id}) }}">
+                        <span>Père : </span>{{ father.firstname }} {{ father.lastname }}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
